@@ -11,20 +11,59 @@ I wrote xlblogger because i needed a simple way to follow the execution and debu
 npm install xlblogger
 ```
 
+
+## Example
+
+```js
+
+var xlblogger = require('xlblogger');
+var logger = new xlblogger('Alpha','C:/XLBlogger');
+
+logger.logValColor('XLBlogger'); // Default Coloration
+
+var FgMagenta = '\x1b[35m'; // Magenta font color Code
+logger.logValColor('XLBlogger',FgMagenta);
+
+logger.logThis('Simple string, no console coloration !');
+logger.logTree('One','Two','Three');
+
+logger.logBlank();
+logger.logAttrVal('Name','Marou');
+
+```
+
+![enter image description here](http://s28.postimg.org/999vgy2u5/Example.png)
+
+
+
+
+
 ## Features
 
 First thing's first:
 ```js
-var logger = require('xlblogger');
+var xlblogger = require('xlblogger');
+
 ```
 
 __&#10049; Easy and simple configuration:__
 
 __&#8226; Specify the output directories:__
 
+ The parent dir is optional :
+
+ - You can specify it globally in 'logConfig.xml' , in this case every instance of xlblogger will have a subdirectory  in the specified parent dir.
+ - You can keep the default value (C:/XLBlogger)
+
+NOTE : (the xml file is generated after the first execution, in the same folder of your js file)
 
 ```js
-logger.configLog('Alpha','C:/XLBlogger');
+
+/* var logger = new xlblogger( [outputDir] , <parentDir> ) */
+var logger = new xlblogger('Alpha','C:/XLBlogger');
+// or
+var logger = new xlblogger('Alpha'); // Default parent dir
+
 ```
 
 
@@ -86,31 +125,6 @@ logger.logThis('Simple string, no console coloration !');
 ```js
 logger.logTree('1','2','3');
 ```
-
-## Example
-
-```js
-
-var logger = require('xlblogger');
-logger.configLog('ija');
-logger.startLog();
-
-logger.logValColor('XLBlogger'); // Default Coloration
-
-var FgMagenta = '\x1b[35m'; // Magenta font color Code
-logger.logValColor('XLBlogger',FgMagenta);
-
-logger.logThis('Simple string, no console coloration !');
-logger.logTree('One','Two','Three');
-
-logger.logBlank();
-logger.logAttrVal('Name','Marou');
-
-```
-
-![enter image description here](http://s28.postimg.org/999vgy2u5/Example.png)
-
-
 
 ## Color code examples:
 
