@@ -38,6 +38,16 @@
      console.log(color + text + "[0m");
    }
 
+  getDate = function getDate() {
+    d =new Date();
+    dformat = [(d.getMonth()+1).padLeft(),
+                d.getDate().padLeft(),
+                d.getFullYear()].join('/') +' ' +
+               [d.getHours().padLeft(),
+                d.getMinutes().padLeft(),
+                d.getSeconds().padLeft()].join(':');
+    return dformat;
+  }
 
   Number.prototype.padLeft = function(base,chr){
      var  len = (String(base || 10).length - String(this).length)+1;
@@ -60,13 +70,12 @@
   /* ################################# */
 
 
-
+  var util = require('util');
   var cheerio = require("cheerio")
   var fs = require("fs");
 
 
   /* ################## */
-
 
 
 /*## there is 3 ways to specify the output directory : ##
@@ -76,7 +85,6 @@
 ##### PRIORITY ORDER: JS > XML > DEFAULT
 */
 function xlblogger(mag, optionalDir){
-
   this.active = true;
 
   /* Create xml Config File */
@@ -88,13 +96,11 @@ function xlblogger(mag, optionalDir){
 
   this.configContent = fs.readFileSync(this.configFilePath, "utf8");
   var $ = cheerio.load(this.configContent);
-
   this.NewXmlConfigFilePath = $("outputDirectory").text().trim();
 
-
   this.d =new Date();
-  if(!optionalDir){
 
+  if(!optionalDir){
           if(!this.NewXmlConfigFilePath || this.NewXmlConfigFilePath ==""){
             console.mixedColor("[DEFAULT] Logger outputDirectory for ["+mag+"]","C:/XLBlogger");
             this.dir = "C:/XLBlogger"; // in case someone enjoyed deleting the content of the generated xml file :p
@@ -120,7 +126,6 @@ function xlblogger(mag, optionalDir){
 }
 
 
-
 xlblogger.prototype.startLog = function startLog(){
   try {
       fs.writeFileSync(this.filename, "Starting Log\r\n", "UTF-8");
@@ -128,84 +133,60 @@ xlblogger.prototype.startLog = function startLog(){
     } catch (err) {};
 }
 
-
 xlblogger.prototype.stopLog =  function stopLog(){
   this.active = false;
 }
 
-
 xlblogger.prototype.logThis = function logThis(etape){
   if(this.active){
-    d =new Date();
-    dformat = [(d.getMonth()+1).padLeft(),
-                d.getDate().padLeft(),
-                d.getFullYear()].join('/') +' ' +
-               [d.getHours().padLeft(),
-                d.getMinutes().padLeft(),
-                d.getSeconds().padLeft()].join(':');
-
+      dformat = getDate()
       fs.appendFileSync(this.filename,"["+dformat+"]"+etape+"\r\n", "UTF-8");
       console.log(etape);
   }
 }
 
-
 // Save a line in the logger and print the message in the console, we can pass the color or keep the default one
 xlblogger.prototype.logValColor = function logValColor(msg , color){
   if(this.active){
-    d =new Date();
-    dformat = [(d.getMonth()+1).padLeft(),
-               d.getDate().padLeft(),
-               d.getFullYear()].join('/') +' ' +
-              [d.getHours().padLeft(),
-               d.getMinutes().padLeft(),
-               d.getSeconds().padLeft()].join(':');
-
-    fs.appendFileSync(this.filename,"["+dformat+"]"+msg+"\r\n", "UTF-8");
-    colorParam (msg,color);
+    dformat = getDate()
+    fs.appendFileSync(this.filename,"["+dformat+"]"+util.inspect(msg)+"\r\n", "UTF-8");
+    colorParam (util.inspect(msg),color);
   }
 }
 
 
-
 xlblogger.prototype.logAttrVal =  function logAttrVal(attribute , value){
   if(this.active){
-    d =new Date();
-    dformat = [(d.getMonth()+1).padLeft(),
-               d.getDate().padLeft(),
-               d.getFullYear()].join('/') +' ' +
-              [d.getHours().padLeft(),
-               d.getMinutes().padLeft(),
-               d.getSeconds().padLeft()].join(':');
-
-    fs.appendFileSync(this.filename,"["+dformat+"]"+attribute+" : "+value+"\r\n", "UTF-8");
-    console.mixedColor(attribute,value);
+    dformat = getDate()
+    fs.appendFileSync(this.filename,"["+dformat+"]"+attribute+" : "+ util.inspect(value)+"\r\n", "UTF-8");
+    console.mixedColor(attribute,util.inspect(value));
   }
 }
 
 xlblogger.prototype.logTree = function logTree(n1 , n2, n3){
   if(this.active){
-    d =new Date();
-    dformat = [(d.getMonth()+1).padLeft(),
-               d.getDate().padLeft(),
-               d.getFullYear()].join('/') +' ' +
-              [d.getHours().padLeft(),
-               d.getMinutes().padLeft(),
-               d.getSeconds().padLeft()].join(':');
-
+    dformat = getDate()
     fs.appendFileSync(this.filename,"["+dformat+"]"+n1+" / "+n2+" / "+n3+"\r\n", "UTF-8");
     console.specialTree(n1, n2, n3);
   }
 }
 
 
-
-xlblogger.prototype.logBlank = function logBlank(){
-  if(this.active){
-    fs.appendFileSync(this.filename,"                \r\n", "UTF-8");
-    console.log("         ");
+xlblogger.prototype.output = function output(obj){
+  if(this.active && obj){
+    console.log(obj);
+    fs.appendFileSync(this.filename,  util.inspect(obj)+"\r\n", "UTF-8");
+  }else {
+    fs.appendFileSync(this.filename,"\r\n", "UTF-8");
+    console.log("");
   }
 }
 
+
+xlblogger.prototype.logBlank = function logBlank(){
+  if(this.active){
+    this.output()
+  }
+}
 
 module.exports = xlblogger;

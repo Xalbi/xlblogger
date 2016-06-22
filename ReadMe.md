@@ -36,8 +36,6 @@ logger.logAttrVal('Name','Marou');
 
 
 
-
-
 ## Features
 
 First thing's first:
