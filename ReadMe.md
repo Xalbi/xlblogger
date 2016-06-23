@@ -28,7 +28,6 @@ logger.logTree('One','Two','Three');
 logger.logBlank();
 logger.logAttrVal('Name','Marou');
 
-
 // output Objects
 var data = {}
 data.id = 21220244
@@ -45,7 +44,6 @@ PS: All the proposed functions works with strings as well as  objects.
 
 
 ![enter image description here]( https://s32.postimg.org/fpsn4qsmt/exemple1_0_3.png )
-
 
 
 ## Features
@@ -136,7 +134,6 @@ logger.logThis('Simple string, no console coloration !');
 logger.logTree('1','2','3');
 ```
 
-
 This feature was added to offer a simple way to export Brut data to a file
 
 ```js
@@ -149,7 +146,6 @@ out.output('Information');
 ```
 
 ![enter image description here](https://s32.postimg.org/r8wo759s5/output.png)
-
 
 ## Color code examples:
 
