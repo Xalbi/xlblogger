@@ -10,7 +10,6 @@ I wrote xlblogger because i needed a simple way to follow the execution and debu
 npm install xlblogger
 ```
 
-
 ## Example
 
 ```js
