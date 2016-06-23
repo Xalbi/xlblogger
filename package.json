@@ -1,16 +1,20 @@
 {
     "name": "xlblogger",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "dependencies": {
-      "cheerio" : ">=0.19.0"
+      "cheerio" : ">=0.19.0",
+      "util":"0.10.3"
     },
-    "description": "Basic and simple node.js logger with #ConsoleColoration",
+    "description": "logger, basic and simple node logger with console coloration",
     "keywords": [
-         "logger",
-         "simple",
-         "coloration",
-         "color",
-         "nodejs"
+      "log",
+      "logger",
+      "color",
+      "export",
+      "simple",
+      "coloration",
+      "logging",
+      "xlb"
      ],
     "repository" :{
     "type" : "git",
@@ -18,5 +22,5 @@
     },
     "main": "xlblogger",
     "author": "xalbi <ahmad.chelbi@outlook.com>",
-    "license" : "MIT License"
+    "license" : "MIT"
 }
