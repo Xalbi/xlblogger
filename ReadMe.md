@@ -4,27 +4,77 @@ Basic and simple node.js logger with #ConsoleColoration
 ## Why
 I wrote xlblogger because i needed a simple way to follow the execution and debug my nodejs scripts.
 
-
 ## Installation
 
 ```console
 npm install xlblogger
 ```
 
+
+## Example
+
+```js
+
+var xlblogger = require('xlblogger');
+var logger = new xlblogger('Alpha','C:/XLBlogger');
+
+logger.logValColor('XLBlogger'); // Default Coloration
+
+var FgMagenta = '\x1b[35m'; // Magenta font color Code
+logger.logValColor('XLBlogger',FgMagenta);
+
+logger.logThis('Simple string, no console coloration !');
+logger.logTree('One','Two','Three');
+
+logger.logBlank();
+logger.logAttrVal('Name','Marou');
+
+
+// output Objects
+var data = {}
+data.id = 21220244
+data.value = 22772020
+data.name = 'Marou'
+data.pwd = '*******'
+data.email = 'test@xlblogger.npm'
+
+logger.output(data)
+
+```
+
+PS: All the proposed functions works with strings as well as  objects.
+
+
+![enter image description here]( https://s32.postimg.org/fpsn4qsmt/exemple1_0_3.png )
+
+
+
 ## Features
 
 First thing's first:
 ```js
-var logger = require('xlblogger');
+var xlblogger = require('xlblogger');
+
 ```
 
 __&#10049; Easy and simple configuration:__
 
 __&#8226; Specify the output directories:__
 
+ The parent dir is optional :
+
+ - You can specify it globally in 'logConfig.xml' , in this case every instance of xlblogger will have a subdirectory  in the specified parent dir.
+ - You can keep the default value (C:/XLBlogger)
+
+NOTE : (the xml file is generated after the first execution, in the same folder of your js file)
 
 ```js
-logger.configLog('Alpha','C:/XLBlogger');
+
+/* var logger = new xlblogger( [outputDir] , <parentDir> ) */
+var logger = new xlblogger('Alpha','C:/XLBlogger');
+// or
+var logger = new xlblogger('Alpha'); // Default parent dir
+
 ```
 
 
@@ -33,8 +83,8 @@ logger.configLog('Alpha','C:/XLBlogger');
 XLBlogger
 │
 └───Alpha
-    │   Alpha.[04].Of.16h51.log
-    │   Alpha.[04].Of.16h59.log
+    │   Alpha.[04].Of.16h51.[03].log
+    │   Alpha.[04].Of.16h59.[53].log
 ```
 
 
@@ -43,7 +93,7 @@ XLBlogger
 __&#8226; Start logging:__
 Time for you to go.
 ```js
-logger.startLog();
+logger.startLog(); // The logger is active by default
 ```
 
 
@@ -87,29 +137,19 @@ logger.logThis('Simple string, no console coloration !');
 logger.logTree('1','2','3');
 ```
 
-## Example
+
+This feature was added to offer a simple way to export Brut data to a file
 
 ```js
 
-var logger = require('xlblogger');
-logger.configLog('ija');
-logger.startLog();
+var xlblogger = require('xlblogger');
 
-logger.logValColor('XLBlogger'); // Default Coloration
+var out = new xlblogger('testOut','C:/XLBlogger');
 
-var FgMagenta = '\x1b[35m'; // Magenta font color Code
-logger.logValColor('XLBlogger',FgMagenta);
-
-logger.logThis('Simple string, no console coloration !');
-logger.logTree('One','Two','Three');
-
-logger.logBlank();
-logger.logAttrVal('Name','Marou');
-
+out.output('Information');
 ```
 
-![enter image description here](http://s28.postimg.org/999vgy2u5/Example.png)
-
+![enter image description here](https://s32.postimg.org/r8wo759s5/output.png)
 
 
 ## Color code examples:
@@ -160,8 +200,7 @@ logger.logAttrVal('Name','Marou');
 
 __&#991; Log every execution separately:__
 
-![enter image description here](http://s23.postimg.org/9i3wuj7kr/Different_Log.png)
+![enter image description here](https://s31.postimg.org/rybs8uqmj/Diff_Log.png)
 
 ## License
-
 (The MIT License)
