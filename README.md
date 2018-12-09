@@ -43,7 +43,7 @@ logger.output(data)
 PS: All the proposed functions works with strings as well as  objects.
 
 
-![enter image description here]( https://s32.postimg.org/fpsn4qsmt/exemple1_0_3.png )
+![enter image description here]( https://ibb.co/zm4twT3 )
 
 
 ## Features
@@ -199,3 +199,13 @@ __&#991; Log every execution separately:__
 
 ## License
 (The MIT License)
+
+
+
+https://i.ibb.co/zm4twT3/2907.png
+https://i.ibb.co/HqSRrj0/Different-Log.png
+https://i.ibb.co/8btyS8D/DiffLog.png
+https://i.ibb.co/kyzDrGk/Example.png
+https://i.ibb.co/m9thM0w/exemple1-0-3.png
+https://i.ibb.co/8jPf6VX/Full-Example.png
+https://i.ibb.co/XWGRBz0/output.png
