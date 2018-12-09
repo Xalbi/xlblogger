@@ -43,7 +43,7 @@ logger.output(data)
 PS: All the proposed functions works with strings as well as  objects.
 
 
-![enter image description here]( https://ibb.co/zm4twT3 )
+![enter image description here]( https://i.ibb.co/2FkpB1z/2907.png )
 
 
 ## Features
@@ -145,7 +145,7 @@ var out = new xlblogger('testOut','C:/XLBlogger');
 out.output('Information');
 ```
 
-![enter image description here](https://s32.postimg.org/r8wo759s5/output.png)
+![enter image description here](https://i.ibb.co/cysn5Nf/output.png)
 
 ## Color code examples:
 
@@ -191,21 +191,11 @@ out.output('Information');
 
 ❤ Foreground and Background console colors:
 
-![enter image description here](http://s21.postimg.org/4iqob3onr/Full_Example.png)
+![enter image description here](https://i.ibb.co/mHh267S/Full-Example.png)
 
 __&#991; Log every execution separately:__
 
-![enter image description here](https://s31.postimg.org/rybs8uqmj/Diff_Log.png)
+![enter image description here](https://i.ibb.co/ZS7QkT6/DiffLog.png)
 
 ## License
 (The MIT License)
-
-
-
-https://i.ibb.co/zm4twT3/2907.png
-https://i.ibb.co/HqSRrj0/Different-Log.png
-https://i.ibb.co/8btyS8D/DiffLog.png
-https://i.ibb.co/kyzDrGk/Example.png
-https://i.ibb.co/m9thM0w/exemple1-0-3.png
-https://i.ibb.co/8jPf6VX/Full-Example.png
-https://i.ibb.co/XWGRBz0/output.png
